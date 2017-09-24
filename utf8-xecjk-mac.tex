@@ -1,0 +1,175 @@
+\documentclass[UTF8,12pt]{article} % 12pt 为字号为小
+\usepackage{amssymb,amsfonts,amsmath,amsthm}
+%\usepackage{fontspec,xltxtra,xunicode}
+%\usepackage{times}
+
+%----------
+% 定义中文环境
+%----------
+
+\usepackage{xeCJK}
+
+%\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
+%\setCJKsansfont{SimHei}
+%\setCJKfamilyfont{zhsong}{SimSun}
+%\setCJKfamilyfont{zhhei}{SimHei}
+%\setCJKfamilyfont{zhkai}{KaiTi}
+
+\setCJKmainfont[BoldFont={Heiti SC Light},ItalicFont={Kaiti SC Regular}]{Songti SC Regular}
+\setCJKsansfont{Heiti SC Light}
+\setCJKfamilyfont{song}{Songti SC Regular}
+\setCJKfamilyfont{zhhei}{Heiti SC Light}
+\setCJKfamilyfont{zhkai}{Kaiti SC Regular}
+\setCJKfamilyfont{zhfs}{STFangsong}
+\setCJKfamilyfont{zhli}{Libian SC Regular}
+\setCJKfamilyfont{zhyou}{Yuanti SC Regular}
+
+
+\newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
+\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
+\newcommand*{\kaiti}{\CJKfamily{zhkai}}  % 楷体
+\newcommand*{\fangsong}{\CJKfamily{zhfs}} % 仿宋
+\newcommand*{\lishu}{\CJKfamily{zhli}}    % 隶书
+\newcommand*{\yuanti}{\CJKfamily{zhyou}} % 圆体
+
+%----------
+% 版面设置
+%----------
+%首段缩进
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+
+%行距
+\renewcommand{\baselinestretch}{1.4} % 1.4倍行距
+
+%页边距
+\usepackage[a4paper]{geometry}
+\geometry{verbose,
+  tmargin=2cm,% 上边距
+  bmargin=2cm,% 下边距
+  lmargin=3cm,% 左边距
+  rmargin=3cm % 右边距
+}
+
+
+%----------
+% 其他宏包
+%----------
+%图形相关
+\usepackage[x11names]{xcolor} % must before tikz, x11names defines RoyalBlue3
+\usepackage{graphicx}
+\usepackage{pstricks,pst-plot,pst-eps}
+\usepackage{subfig}
+\def\pgfsysdriver{pgfsys-dvipdfmx.def} % put before tikz
+\usepackage{tikz}
+
+%原文照排
+\usepackage{verbatim}
+
+%网址
+\usepackage{url}
+
+%超链
+%\usepackage{hyper}
+
+
+%----------
+% 习题与解答环境
+%----------
+%习题环境
+\theoremstyle{definition} 
+\newtheorem{exs}{习题}
+
+%解答环境
+\ifx\proof\undefined\
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep
+\scshape
+#1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\fi
+
+\renewcommand{\proofname}{\it{证明}}
+
+
+%==========
+% 正文部分
+%==========
+
+\begin{document}
+
+\title{基于XeCJK的中文作业模板文件}
+\author{Nbody}
+%\date{} % 若不需要自动插入日期，则去掉前面的注释；{ } 中也可以自定义日期格式
+\maketitle
+
+\section{模板介绍}
+这个模板是UTF-8编码的，使用xeCJK宏包，中英文混排更美观，但编译速度稍慢。注意：该模板只能用xelatex编译。常用逻辑符号命令：
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+名称      & 符号                   & 命令 \\
+\hline
+否定      & $\neg$                & \verb|\neg| \\
+合取      & $\land$               & \verb|\land| \\
+析取      & $\lor$                & \verb|\land| \\
+蕴含      & $\to$                 & \verb|\to| \\
+推出      & $\Rightarrow$         & \verb|\Rightarrow| \\
+实质蕴涵   & $\supset$             & \verb|\supset| \\
+双蕴含     & $\leftrightarrow$     & \verb|\leftrightarrow| \\
+等价      & $\equiv$              & \verb|\equiv| \\
+存在量词   & $\exists$             & \verb|\exists| \\
+全称量词   & $\forall$             & \verb|\forall| \\
+可满足，真  & $\models$            & \verb|\models| \\
+语义后承   & $\vDash$，$\nvDash$   & \verb|\vDash,\nvDash| \\
+句法后承   & $\vdash$，$\nvdash$   & \verb|\vdash,\nvdash| \\
+属于      & $\in$，$\notin$       & \verb|\in,\notin| \\
+真包含于   & $\subset$             & \verb|\subset| \\
+包含于     & $\subset$            & \verb|\subset| \\
+不等于     & $\neq$               & \verb|\neq| \\
+小于等于   & $\leq$               & \verb|\leq| \\
+大于等于   & $\geq$               & \verb|\geq| \\
+下省略    & $\ldots$              & \verb|\ldots| \\
+中省略    & $\cdots$              & \verb|\cdots| \\
+对角省略  & $\ddots$              & \verb|\ddodts| \\
+\hline 
+\end{tabular}
+\end{center}
+更多符号对应的命令请参见：
+\begin{itemize}
+  \item \url{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}或
+  \item \url{https://www.ctan.org/tex-archive/info/symbols/comprehensive/}
+\end{itemize}
+
+
+\section{中文字体}
+
+\subsection{字体切换}
+默认字体为宋体。我们可以这样来改变中文字体：\heiti 从现在起是黑体。\kaiti 从现在起是楷体。\fangsong 从现在起是仿宋。\lishu 从现在起是隶书。\yuanti 从现在起是圆体。\songti 从现在起又是宋体。
+
+\subsection{字体强调}
+加粗字体自动变为黑体：\bf{粗体}，加斜或强调字体自动变成楷体：\it{斜体}，\emph{强调}。
+
+
+\section{习题环境}
+
+\begin{exs}
+请证明勾股定理。
+\end{exs}
+\begin{proof}
+这是证明。末尾后会自动添加方块以示结束。
+\end{proof}
+
+\begin{exs}
+请计算 $1+2+\ldots +100$。
+\end{exs}
+\begin{proof}[解答]
+这是解答。末尾后会自动添加方块以示结束。
+\end{proof}
+
+\end{document}
